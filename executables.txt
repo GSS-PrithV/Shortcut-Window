@@ -1,3 +1,4 @@
+BloonsTD6,D:/Steam Games/steamapps/common/BloonsTD6/BloonsTD6.exe
 Stardew Valley,D:/Steam Games/steamapps/common/Stardew Valley/Stardew Valley.exe
-Geometry Dash,D:/Steam Games/steamapps/common/Geometry Dash/GeometryDash.exe
 Stick Notes,./SNVBS/stickycut.exe
+Lethal Company,D:/Steam Games/steamapps/common/Lethal Company/Lethal Company.exe
