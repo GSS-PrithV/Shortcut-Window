@@ -1,0 +1,3 @@
+Stardew Valley,D:/Steam Games/steamapps/common/Stardew Valley/Stardew Valley.exe
+Geometry Dash,D:/Steam Games/steamapps/common/Geometry Dash/GeometryDash.exe
+Stick Notes,./SNVBS/stickycut.exe

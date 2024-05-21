@@ -1,13 +1,14 @@
 import keyboard as kb
 import subprocess as sp
 import PySimpleGUI as sg
+import fileinput 
 
-SC_List = { #List of Shortcuts TODO: Add more shortcuts and add a way to add more shortcuts in GUI
-     "Stardew Valley": "D:/Steam Games/steamapps/common/Stardew Valley/Stardew Valley.exe", 
-     "Geometry Dash": "D:/Steam Games/steamapps/common/Geometry Dash/GeometryDash.exe",
-     "Stick Notes": "stickycut.exe",
-     }
+SC_List = {} #List of Shortcuts TODO: Add more shortcuts and add a way to add more shortcuts in GUI
 
+for line in fileinput.input("executables.txt"):
+    SC_List[line.split(",")[0]] = line.split(",")[1][:-1]
+
+print(SC_List)
 
 def make_window():
     layout = [[sg.Text('Welcome to the shortcut shortcut station!')]]
