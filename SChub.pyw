@@ -3,6 +3,8 @@ import subprocess as sp
 import PySimpleGUI as sg
 import fileinput 
 
+logs_papth = 'C:/Users/prith/Documents/StickyNote-shortcut/executables.txt'
+
 SC_List = {} #List of Shortcuts 
 
 
@@ -16,10 +18,11 @@ def make_window(): #creates the window for the GUI
      [sg.InputText(key="-SHORTCUT_NAME-")],
      [sg.InputText(key="-FILE_PATH-"),
       sg.FileBrowse(initial_folder="C:\\Users\\Public\\Desktop", file_types=(("Executables", "*.exe"),))],
-     [sg.Button('Submit')]
+     [sg.Button('Submit')],
+     [sg.Text('Shortcuts:')]
     ]
 
-    for line in fileinput.input("executables.txt"): #creates Shortcut list 
+    for line in fileinput.input(logs_papth): #creates Shortcut list 
         SC_List[line.split(",")[0]] = line.split(",")[1][:-1]
 
     for key in SC_List: #Creates a button for each shortcut, will change once I figure out how to add shortcuts in GUI
@@ -27,28 +30,28 @@ def make_window(): #creates the window for the GUI
 
     return sg.Window('Shortcut Station', layout)
 
-
 while True: #Main loop
-        if(kb.is_pressed('ctrl+alt+k')):
-            window = make_window()
-            while True:
-                event, values = window.read()
+    if(kb.is_pressed('ctrl+alt+k')):
+        # print("Pressed")
+        window = make_window()
+        while True:
+            event, values = window.read()
 
-                if event == sg.WIN_CLOSED: #when window is closed
-                    print("Window Closed")
-                    break
+            if event == sg.WIN_CLOSED: #when window is closed
+                # print("Window Closed")
+                break
 
-                if event == "Submit": #when user inputs a file path for an .exe
+            if event == "Submit": #when user inputs a file path for an .exe
                     # print(values["-SHORTCUT_NAME-"])
                     # print(values["-FILE_PATH-"])
-                    file = open("executables.txt", "a")
-                    file.write(values["-SHORTCUT_NAME-"] + "," + values["-FILE_PATH-"] + "\n")
-                    file.close()
-                    window.close()
-                    window = make_window()
+                file = open(logs_papth, "a")
+                file.write(values["-SHORTCUT_NAME-"] + "," + values["-FILE_PATH-"] + "\n")
+                file.close()
+                window.close()
+                window = make_window()
 
-                if SC_List.get(event) != None: #when user clicks a shortcut button
-                    print(SC_List[event])
-                    sp.Popen([SC_List[event], '-new-window'])
+            if SC_List.get(event) != None: #when user clicks a shortcut button
+                # print(SC_List[event])
+                sp.Popen([SC_List[event], '-new-window'])
         
     
